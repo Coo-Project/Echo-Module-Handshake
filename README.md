@@ -1,2 +1,3 @@
-# Echo-Plugin-Handshake
-An example plugin for Echo demonstrating handshake and key exchange with the Habbo client.
+# plugin-handshake
+
+Handshake plugin (inner system module) that handles encryption and authentication for Echo.
