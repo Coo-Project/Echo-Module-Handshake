@@ -19,8 +19,9 @@ public class UserService implements IUserService {
     public Optional<UserData> getUserAuthenticate(String username, String password) {
         try (var storage = StorageContextFactory.getStorage()) {
             return storage.from(UserData.class)
-                    .filter(f ->
-                            f.equals(UserData::getName, username).equals(UserData::getPassword, password))
+                    .filter(f -> f
+                        .equals(UserData::getName, username)
+                        .equals(UserData::getPassword, password))
                     .first();
         } catch (SQLException e) {
             this.plugin.getLogger().error("Error fetching user authenticate: ", e);
