@@ -5,8 +5,9 @@ import net.h4bbo.echo.api.messages.MessageEvent;
 import net.h4bbo.echo.api.network.codecs.DataCodec;
 import net.h4bbo.echo.api.network.codecs.IClientCodec;
 import net.h4bbo.echo.codecs.PacketCodec;
+import net.h4bbo.echo.plugin.handshake.HandshakePlugin;
 
-public class GetSessionParamsMessageEvent extends MessageEvent {
+public class GetSessionParamsMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
     public int getHeaderId() {
         return 181;

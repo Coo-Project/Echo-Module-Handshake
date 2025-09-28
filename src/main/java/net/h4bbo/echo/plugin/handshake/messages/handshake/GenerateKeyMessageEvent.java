@@ -11,7 +11,7 @@ import net.h4bbo.echo.plugin.handshake.messages.login.GetSessionParamsMessageEve
 import net.h4bbo.echo.plugin.handshake.messages.login.LoginMessageEvent;
 import net.h4bbo.echo.codecs.PacketCodec;
 
-public class GenerateKeyMessageEvent extends MessageEvent {
+public class GenerateKeyMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
     public int getHeaderId() {
         return 202;
@@ -19,7 +19,7 @@ public class GenerateKeyMessageEvent extends MessageEvent {
 
     @Override
     public void handle(IPlayer player, IClientCodec msg) {
-        var encryptionPlugin = (HandshakePlugin) this.getPlugin();
+        var encryptionPlugin = this.getPlugin();
 
         if (encryptionPlugin == null) {
             player.getConnection().close();

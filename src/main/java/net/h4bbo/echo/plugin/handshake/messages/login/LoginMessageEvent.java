@@ -13,7 +13,7 @@ import net.h4bbo.echo.storage.models.user.UserData;
 
 import java.sql.SQLException;
 
-public class LoginMessageEvent extends MessageEvent {
+public class LoginMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
     public int getHeaderId() {
         return 4;
@@ -24,8 +24,7 @@ public class LoginMessageEvent extends MessageEvent {
         String username = msg.pop(DataCodec.STRING, String.class);
         String password = msg.pop(DataCodec.STRING, String.class);
 
-        var plugin = (HandshakePlugin) this.getPlugin();
-        var userOpt = plugin.getUserAuthenticate(username, password);
+        var userOpt = this.getPlugin().getUserAuthenticate(username, password);
 
         userOpt.ifPresent(value -> player.attr(UserData.DATA_KEY).setIfAbsent(value));
 

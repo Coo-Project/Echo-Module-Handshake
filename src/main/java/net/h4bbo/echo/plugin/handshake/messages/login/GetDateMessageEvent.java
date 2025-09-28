@@ -6,12 +6,13 @@ import net.h4bbo.echo.api.messages.MessageEvent;
 import net.h4bbo.echo.api.network.codecs.DataCodec;
 import net.h4bbo.echo.api.network.codecs.IClientCodec;
 import net.h4bbo.echo.codecs.PacketCodec;
+import net.h4bbo.echo.plugin.handshake.HandshakePlugin;
 import net.h4bbo.echo.storage.models.user.UserData;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 
-public class GetDateMessageEvent extends MessageEvent {
+public class GetDateMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
     public int getHeaderId() {
         return 49;

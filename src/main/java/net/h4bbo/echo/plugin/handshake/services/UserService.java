@@ -23,7 +23,7 @@ public class UserService implements IUserService {
                             f.equals(UserData::getName, username).equals(UserData::getPassword, password))
                     .first();
         } catch (SQLException e) {
-            this.plugin.getLogger().error("Error loading navigator categories: ", e);
+            this.plugin.getLogger().error("Error fetching user authenticate: ", e);
         }
 
         return Optional.empty();
