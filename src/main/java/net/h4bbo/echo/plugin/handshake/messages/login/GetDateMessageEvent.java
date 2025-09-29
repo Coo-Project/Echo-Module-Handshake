@@ -14,11 +14,6 @@ import java.time.format.DateTimeFormatter;
 
 public class GetDateMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
-    public int getHeaderId() {
-        return 49;
-    }
-
-    @Override
     public void handle(IPlayer player, IClientCodec msg) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
         var date = LocalDate.now().format(formatter);
@@ -30,5 +25,10 @@ public class GetDateMessageEvent extends MessageEvent<HandshakePlugin> {
         if (!player.hasAttr(UserData.DATA_KEY)) {
             this.getEventManager().publish(new PlayerClickRegisterEvent(player));
         }
+    }
+
+    @Override
+    public int getHeaderId() {
+        return 49;
     }
 }

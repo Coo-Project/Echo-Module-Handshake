@@ -82,11 +82,6 @@ public class HandshakePlugin extends JavaPlugin {
         event.setBuffer(buffer);
     }
 
-    public Optional<UserData> getUserAuthenticate(String username, String password) {
-        return getServices().getRequiredService(IUserService.class)
-                .getUserAuthenticate(username, password);
-    }
-
     public Map<ChannelId, RC4Holder> getEncryptionHolders() {
         return encryptionHolders;
     }

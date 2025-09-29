@@ -9,11 +9,6 @@ import net.h4bbo.echo.plugin.handshake.HandshakePlugin;
 
 public class InitCryptoMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
-    public int getHeaderId() {
-        return 206;
-    }
-
-    @Override
     public void handle(IPlayer player, IClientCodec msg) {
         // Needed after login
         player.getConnection().getMessageHandler().register(this.getPlugin(), GenerateKeyMessageEvent.class);
@@ -25,5 +20,10 @@ public class InitCryptoMessageEvent extends MessageEvent<HandshakePlugin> {
         PacketCodec.create(277)
                 .append(DataCodec.VL64_INT, 0)
                 .send(player);
+    }
+
+    @Override
+    public int getHeaderId() {
+        return 206;
     }
 }

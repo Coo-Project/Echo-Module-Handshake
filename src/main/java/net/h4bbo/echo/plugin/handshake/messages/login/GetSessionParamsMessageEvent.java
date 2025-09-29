@@ -9,11 +9,6 @@ import net.h4bbo.echo.plugin.handshake.HandshakePlugin;
 
 public class GetSessionParamsMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
-    public int getHeaderId() {
-        return 181;
-    }
-
-    @Override
     public void handle(IPlayer player, IClientCodec msg) {
         PacketCodec.create(257)
                 .append(DataCodec.VL64_INT, 9) // 9 rules
@@ -39,5 +34,10 @@ public class GetSessionParamsMessageEvent extends MessageEvent<HandshakePlugin> 
 
         // Not needed after login
         player.getConnection().getMessageHandler().deregister(null, GetSessionParamsMessageEvent.class);
+    }
+
+    @Override
+    public int getHeaderId() {
+        return 181;
     }
 }

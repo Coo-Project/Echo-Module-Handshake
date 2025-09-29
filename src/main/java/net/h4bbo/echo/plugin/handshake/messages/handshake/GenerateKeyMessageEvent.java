@@ -13,11 +13,6 @@ import net.h4bbo.echo.codecs.PacketCodec;
 
 public class GenerateKeyMessageEvent extends MessageEvent<HandshakePlugin> {
     @Override
-    public int getHeaderId() {
-        return 202;
-    }
-
-    @Override
     public void handle(IPlayer player, IClientCodec msg) {
         var encryptionPlugin = this.getPlugin();
 
@@ -49,5 +44,10 @@ public class GenerateKeyMessageEvent extends MessageEvent<HandshakePlugin> {
                 .send(player);
 
         rc4Holder.setEncryptionReady(true);
+    }
+
+    @Override
+    public int getHeaderId() {
+        return 202;
     }
 }

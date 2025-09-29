@@ -14,9 +14,10 @@ import net.h4bbo.echo.storage.models.user.UserData;
 import java.sql.SQLException;
 
 public class LoginMessageEvent extends MessageEvent<HandshakePlugin> {
-    @Override
-    public int getHeaderId() {
-        return 4;
+    private final IUserService userService;
+
+    public LoginMessageEvent(IUserService userService) {
+        this.userService = userService;
     }
 
     @Override
@@ -24,7 +25,7 @@ public class LoginMessageEvent extends MessageEvent<HandshakePlugin> {
         String username = msg.pop(DataCodec.STRING, String.class);
         String password = msg.pop(DataCodec.STRING, String.class);
 
-        var userOpt = this.getPlugin().getUserAuthenticate(username, password);
+        var userOpt = this.userService.getUserAuthenticate(username, password);
 
         userOpt.ifPresent(value -> player.attr(UserData.DATA_KEY).setIfAbsent(value));
 
@@ -52,5 +53,10 @@ public class LoginMessageEvent extends MessageEvent<HandshakePlugin> {
 
         PacketCodec.create(3)
                 .send(player);
+    }
+
+    @Override
+    public int getHeaderId() {
+        return 4;
     }
 }
