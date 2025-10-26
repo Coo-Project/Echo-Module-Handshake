@@ -22,8 +22,8 @@ public class LoginMessageEvent extends MessageEvent<HandshakePlugin> {
 
     @Override
     public void handle(IPlayer player, IClientCodec msg) {
-        String username = msg.pop(DataCodec.STRING, String.class);
-        String password = msg.pop(DataCodec.STRING, String.class);
+        String username = msg.get(DataCodec.STRING);
+        String password = msg.get(DataCodec.STRING);
 
         var userOpt = this.userService.getUserAuthenticate(username, password);
 
@@ -44,9 +44,9 @@ public class LoginMessageEvent extends MessageEvent<HandshakePlugin> {
 
         player.setAuthenticated(true);
 
-        PacketCodec.create(139)
-                .append(DataCodec.BYTES, "Hello " + player.attr(UserData.DATA_KEY).get().getName())
-                        .send(player);
+        // PacketCodec.create(139)
+        //        .append(DataCodec.BYTES, "Hello " + player.attr(UserData.DATA_KEY).get().getName())
+        //                .send(player);
 
         PacketCodec.create(2)
                 .send(player);
